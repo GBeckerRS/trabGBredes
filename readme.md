@@ -4,9 +4,9 @@ Objetivo:
 Transmitir um arquivo de texto qualquer para um host via Socket UDP
 
 Dependencias (modulos utilizados):
-Socket
-Pygtk
+- Socket
+- Pygtk
 
-glade (para desenvolvimento de telas)
-Utilizado python 2.7
+- glade (para desenvolvimento de telas)
+- Utilizado python 2.7
 
