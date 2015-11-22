@@ -13,17 +13,18 @@ class Arquivo:
             return -1 # Arquivo esta aberto
 
         try:
-            if (modo.find ('b') == -1):
-                self.arq = open (self.nome, 'r')
-            else:
-                self.arq = open (self.nome, 'rb')
+            self.arq = open (self.nome, modo)
         except IOError as ex:
             print 'Handling error: ', ex
             raise
         print 'Abriu o arquivo...'
 
-        self.estado = 'LEITURA'
-        return True
+        if (modo == 'r'):
+            self.estado = 'LEITURA'
+        else:
+            self.estado = 'ESCRITA'
+
+        return 1
 
     def le (self):
         print 'le o arquivo'
@@ -45,7 +46,6 @@ class Arquivo:
             return -20  # Arquivo nao esta em modo de escrita
 
         self.arq.write (dados)
-        self.arq.flush ()
         print 'Escreveu dados no arquivo...'
 
     def fecha (self):
