@@ -25,17 +25,20 @@ class Servidor:
 
         # Inicializa socket do servidor
         soc = Socket_servidor ('127.0.0.1', '9999')
-        self.buffer = soc.processaCliente ()
 
-        if (self.buffer == ''):
-            print 'Nada foi recebido de clientes, encerrando a aplicacao'
-            sys.exit ()
+        # Looping de recebimento de dados
+        while 1:
+            self.buffer = soc.processaCliente ()
 
-        # Realiza gravacao em arquivo dos dados recebidos
-        self.arquivo = Arquivo (self.nomeArquivo)
-        self.arquivo.abre ('w')
-        self.arquivo.escreve (self.dados)
-        self.arquivo.fecha ()
+            if (self.buffer == ''):
+                print 'Nada foi recebido de clientes, encerrando a aplicacao'
+                sys.exit ()
+
+            # Realiza gravacao em arquivo dos dados recebidos
+            self.arquivo = Arquivo (self.nomeArquivo)
+            self.arquivo.abre ('w')
+            self.arquivo.escreve (self.dados)
+            self.arquivo.fecha ()
 
     def inicializa (self):
         if (self.interfaceGrafica == 'N'):
