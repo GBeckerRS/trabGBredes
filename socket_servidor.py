@@ -4,7 +4,6 @@ import socket
 import sys
 
 from meuSocket import *
-from main import metodo
 
 class Socket_servidor (Socket):
     def __init__ (self, ip, porta):
@@ -16,6 +15,7 @@ class Socket_servidor (Socket):
     def processaCliente (self):
         host = self.getIp ()
         porta = int (self.getPorta ())
+        dados = ''
 
         # Inicializa o socket
         try:
@@ -44,11 +44,16 @@ class Socket_servidor (Socket):
             except KeyboardInterrupt:
                 print 'Encerrando o aplicativo...'
                 sair = True
-            print 'recebeu dados do cliente...'
+            if (not sair):
+                print 'recebeu dados do cliente...'
 
-            # Processa os dados recebidos
+            # Recebeu dados do cliente
             if not sair:
-                print cliente, msg
+                print 'Cliente de origem: ' + cliente
+                dados = msg
+                sair = true
 
         s.close ()
+
+        return dados
 
