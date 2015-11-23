@@ -5,8 +5,9 @@ Transmitir um arquivo de texto qualquer para um host via Socket UDP
 
 Dependencias (modulos utilizados):
 - Socket
-- Pygtk
+- sys
+- Pygtk (Não implementado)
 
-- glade (para desenvolvimento de telas)
+- glade (para desenvolvimento do leiaute das telas)
 - Utilizado python 2.7
 
