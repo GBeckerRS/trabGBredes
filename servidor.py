@@ -37,7 +37,7 @@ class Servidor:
             # Realiza gravacao em arquivo dos dados recebidos
             self.arquivo = Arquivo (self.nomeArquivo)
             self.arquivo.abre ('w')
-            self.arquivo.escreve (self.dados)
+            self.arquivo.escreve (self.buffer)
             self.arquivo.fecha ()
 
     def inicializa (self):
