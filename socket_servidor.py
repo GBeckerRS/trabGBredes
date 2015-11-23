@@ -49,9 +49,9 @@ class Socket_servidor (Socket):
 
             # Recebeu dados do cliente
             if not sair:
-                print 'Cliente de origem: ' + cliente
+                print 'Ip do cliente: ' + cliente[0] + ', Porta do cliente: ' + str (cliente [1])
                 dados = msg
-                sair = true
+                sair = True
 
         s.close ()
 
