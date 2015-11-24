@@ -5,6 +5,7 @@ class Socket:
         self.host = (ip, porta)
         self.ip = ip
         self.porta = porta
+        self.tamBuffer = 1024
 
     def getHost (self):
         return self.host
