@@ -15,10 +15,8 @@ class Cliente:
         self.term = None
         self.arquivo = None
         self.buffer = ''
-        print 'Construtor cliente'
 
     def executa (self):
-        print 'Executa cliente'
         dados = ''
 
         # Inicializa atributos do cliente

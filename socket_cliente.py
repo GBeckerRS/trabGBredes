@@ -10,7 +10,6 @@ class Socket_cliente (Socket):
         self.ip = ip
         self.porta = porta
         self.tamBuffer = 1024
-        print 'Criado o objeto Socket_cliente...'
 
     def enviaDados (self, dados):
         ip = self.getIp ()
@@ -22,7 +21,6 @@ class Socket_cliente (Socket):
         except socket.error, msg:
             print 'Falhou ao criar o socket. Codigo de erro: ' + str (msg [0]) + ' Mensagem ' + msg [1]
             sys.exit ()
-        print 'Foi criado o socket com sucesso...'
 
         # Envia um blodo de dados ao host
         try:
@@ -30,7 +28,6 @@ class Socket_cliente (Socket):
         except socket.error, msg:
             print 'Nao foi possivel comunicar com o host. Codigo de erro: ' + str (msg [0]) + ' Mensagem ' + msg [1]
             sys.exit ()
-        print 'Comunicacao foi estabelecida com sucesso...'
 
         # fecha o socket
         s.close ()

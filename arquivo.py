@@ -6,7 +6,6 @@ class Arquivo:
         self.nome = nome
         self.estado = ''
         self.arq = None
-        print 'Criado o objeto Arquivo...'
 
     def abre (self, modo):
         if (self.estado != ''):
@@ -17,7 +16,6 @@ class Arquivo:
         except IOError as ex:
             print 'Handling error: ', ex
             raise
-        print 'Abriu o arquivo...'
 
         if (modo == 'r'):
             self.estado = 'LEITURA'
@@ -34,7 +32,6 @@ class Arquivo:
             return -11  # Arquivo nao esta em modo de leitura
 
         s = self.arq.read ()
-        print 'Leu dados do arquivo...'
 
         return s
 
@@ -46,7 +43,6 @@ class Arquivo:
             return -20  # Arquivo nao esta em modo de escrita
 
         self.arq.write (dados)
-        print 'Escreveu dados no arquivo...'
 
     def fecha (self):
         print 'fechando o arquivo'
@@ -60,5 +56,4 @@ class Arquivo:
             self.nome = ''
             self.estado = ''
             self.arq = None
-            print 'Fechou o arquivo...'
 

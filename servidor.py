@@ -16,10 +16,6 @@ class Servidor:
         self.buffer = ''
 
     def executa (self):
-        # Le a partir do teclado a porta que aguarda a conexao
-        # le o caminho do arquivo para gravar os dados
-        print 'Metodo executa'
-
         # Inicializa atributos do cliente
         self.inicializa ()
 

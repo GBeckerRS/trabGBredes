@@ -10,7 +10,6 @@ class Socket_servidor (Socket):
         self.ip = ip
         self.porta = porta
         self.tamBuffer = 1024
-        print 'Criado o objeto Socket_servidor...'
 
     def processaCliente (self):
         host = self.getIp ()
@@ -23,7 +22,6 @@ class Socket_servidor (Socket):
         except socket.error, msg:
             print 'Falhou ao criar o socket. Codigo de erro: ' + str(msg [0]) + 'Mensagem ' + msg[1]
             sys.exit ()
-        print 'Foi criado o socket com sucesso...'
 
         # Vincula o socket criado a aplicacao
         try:
@@ -31,9 +29,8 @@ class Socket_servidor (Socket):
         except socket.error, msg:
             print 'Falhou ao vincular o socket. Codigo de erro: ' + str(msg [0]) + 'Mensagem ' + msg[1]
             sys.exit ()
-        print 'Socket foi vinculado ao servidor...'
 
-        print 'Para sair utilize CTRL+X\n'
+        print 'Para sair utilize CTRL+C\n'
 
         # Laco de processamento das requisicoes
         sair = False
@@ -44,8 +41,6 @@ class Socket_servidor (Socket):
             except KeyboardInterrupt:
                 print 'Encerrando o aplicativo...'
                 sair = True
-            if (not sair):
-                print 'recebeu dados do cliente...'
 
             # Recebeu dados do cliente
             if not sair:
