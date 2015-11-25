@@ -6,7 +6,7 @@ import sys
 from meuSocket import *
 
 class Socket_servidor (Socket):
-    def __init__ (self, ip, porta):
+    def __init__ (self, ip, porta, tamamnhoBuffer):
         self.ip = ip
         self.porta = porta
         self.tamBuffer = 1024

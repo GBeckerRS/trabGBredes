@@ -6,10 +6,10 @@ import sys
 from meuSocket import *
 
 class Socket_cliente (Socket):
-    def __init__ (self, ip, porta):
+    def __init__ (self, ip, porta, tamanhoBuffer):
         self.ip = ip
         self.porta = porta
-        self.tamBuffer = 1024
+        self.tamBuffer = tamanhoBuffer
 
     def enviaDados (self, dados):
         ip = self.getIp ()

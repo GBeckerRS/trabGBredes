@@ -11,6 +11,7 @@ def main ():
     interface = ""
     servidor = None
     cliente = None
+    tamanhoBuffer = 8
 
     # Mensagem de abertura do programa
     msgBoasVindas ()
@@ -30,10 +31,10 @@ def main ():
     s = int (term.leTeclado ('1 - Servidor, 2 - Cliente', True))
     if (s == 1):
         # Inicia o app com servidor
-        servidor = Servidor (interface)
+        servidor = Servidor (interface, tamanhoBuffer)
         servidor.executa ()
     else:
-        cliente = Cliente (interface)
+        cliente = Cliente (interface, tamanhoBuffer)
         cliente.executa ()
 
 def msgBoasVindas ():
