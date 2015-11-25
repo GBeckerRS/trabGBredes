@@ -7,14 +7,14 @@ from arquivo import *
 from socket_cliente import *
 
 class Cliente:
-    def __init__ (self, interfaceGrafica):
+    def __init__ (self, interfaceGrafica, tamanhoBuffer):
         self.interfaceGrafica = interfaceGrafica
         self.ip = ''
         self.porta = 0
         self.nomeArquivo = ""
         self.term = None
         self.arquivo = None
-        self.buffer = ''
+        self.tamanhoBuffer = tamanhoBuffer
 
     def executa (self):
         dados = ''
@@ -28,9 +28,19 @@ class Cliente:
         dados = self.arquivo.le ()
         self.arquivo.fecha ()
 
-        # Envia dados para o servidor
-        soc = Socket_cliente (self.ip, self.porta)
-        soc.enviaDados (dados)
+        soc = Socket_cliente (self.ip, self.porta, self.tamanhoBuffer)
+
+        tamanho = len (dados)
+        tamanhoPacote = self.tamanhoBuffer
+        if (tamanho < tamanhoPacote):
+            tamanhoPacote = tamanho
+        inicio = 0
+        final = tamanhoPacote
+        while inicio < (tamanho -1):
+            # Envia dados para o servidor
+            soc.enviaDados (dados [inicio:final])
+            inicio = final
+            inicio += tamanhoPacote
 
     def inicializa (self):
         if (self.interfaceGrafica == 'N'):
