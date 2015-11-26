@@ -38,8 +38,10 @@ class Arquivo:
     def escreve (self, dados):
         print 'Escreve no arquivo'
         if (self.arq is None):
+            print 'Nao abriu'
             return -1   # Arquivo nao esta aberto
         if (self.estado != 'ESCRITA'):
+            print 'Nao esta para escrita'
             return -20  # Arquivo nao esta em modo de escrita
 
         self.arq.write (dados)

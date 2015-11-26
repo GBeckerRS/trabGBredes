@@ -36,11 +36,14 @@ class Cliente:
             tamanhoPacote = tamanho
         inicio = 0
         final = tamanhoPacote
+        counter = 0
         while inicio < (tamanho -1):
             # Envia dados para o servidor
+            print 'Enviando dados (seq = ' + str (counter) + '): ' + dados [inicio:final]
             soc.enviaDados (dados [inicio:final])
             inicio = final
-            inicio += tamanhoPacote
+            final += tamanhoPacote
+            counter += 1
 
     def inicializa (self):
         if (self.interfaceGrafica == 'N'):

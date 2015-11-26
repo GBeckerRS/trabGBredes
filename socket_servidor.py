@@ -10,34 +10,27 @@ class Socket_servidor (Socket):
         self.ip = ip
         self.porta = porta
         self.tamBuffer = 1024
+        self.soc = None
 
     def processaCliente (self):
-        host = self.getIp ()
-        porta = int (self.getPorta ())
         dados = ''
-
-        # Inicializa o socket
-        try:
-            s = socket.socket (socket.AF_INET, socket.SOCK_DGRAM)
-        except socket.error, msg:
-            print 'Falhou ao criar o socket. Codigo de erro: ' + str(msg [0]) + 'Mensagem ' + msg[1]
-            sys.exit ()
-
-        # Vincula o socket criado a aplicacao
-        try:
-            s.bind ((host, porta))
-        except socket.error, msg:
-            print 'Falhou ao vincular o socket. Codigo de erro: ' + str(msg [0]) + 'Mensagem ' + msg[1]
-            sys.exit ()
 
         print 'Para sair utilize CTRL+C\n'
 
         # Laco de processamento das requisicoes
         sair = False
+        # Recebe os dados do cliente
+        try:
+            msg, cliente = self.soc.recvfrom (self.tamBuffer)
+        except KeyboardInterrupt:
+            print 'Encerrando o aplicativo...'
+            sys.exit ()
+        print 'SS Dados: ' + msg
+        '''
         while not sair:
             # Recebe os dados do cliente
             try:
-                msg, cliente = s.recvfrom (self.tamBuffer)
+                msg, cliente = self.soc.recvfrom (self.tamBuffer)
             except KeyboardInterrupt:
                 print 'Encerrando o aplicativo...'
                 sair = True
@@ -47,8 +40,33 @@ class Socket_servidor (Socket):
                 print 'Ip do cliente: ' + cliente[0] + ', Porta do cliente: ' + str (cliente [1])
                 dados = msg
                 sair = True
+        '''
+        return msg
 
+    def inicializaServidor (self):
+        host = self.getIp ()
+        porta = int (self.getPorta ())
+
+        # Inicializa o socket
+        try:
+            self.soc = socket.socket (socket.AF_INET, socket.SOCK_DGRAM)
+        except socket.error, msg:
+            print 'Falhou ao criar o socket. Codigo de erro: ' + \
+                   str(msg [0]) + \
+                  'Mensagem ' + \
+                   msg[1]
+            sys.exit ()
+
+        # Vincula o socket criado a aplicacao
+        try:
+            self.soc.bind ((host, porta))
+        except socket.error, msg:
+            print 'Falhou ao vincular o socket. Codigo de erro: ' + \
+                   str(msg [0]) + \
+                  'Mensagem ' + \
+                   msg[1]
+            sys.exit ()
+
+    def fechaConexao (self):
         s.close ()
-
-        return dados
 

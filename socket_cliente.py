@@ -19,14 +19,22 @@ class Socket_cliente (Socket):
         try:
             s = socket.socket (socket.AF_INET, socket.SOCK_DGRAM)
         except socket.error, msg:
-            print 'Falhou ao criar o socket. Codigo de erro: ' + str (msg [0]) + ' Mensagem ' + msg [1]
+            print 'Falhou ao criar o socket. Codigo de erro: ' + \
+                   str (msg [0]) + \
+                 ' Mensagem ' + \
+                   msg [1]
             sys.exit ()
+
+        print 'Metodo envio Socket Cliente'
 
         # Envia um blodo de dados ao host
         try:
             s.sendto (dados, (ip,porta))
         except socket.error, msg:
-            print 'Nao foi possivel comunicar com o host. Codigo de erro: ' + str (msg [0]) + ' Mensagem ' + msg [1]
+            print 'Nao foi possivel comunicar com o host. Codigo de erro: ' + \
+                   str (msg [0]) + \
+                 ' Mensagem ' + \
+                   msg [1]
             sys.exit ()
 
         # fecha o socket

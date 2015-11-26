@@ -7,34 +7,39 @@ from socket_servidor import *
 from arquivo import *
 
 class Servidor:
-    def __init__ (self, interfaceGrafica):
+    def __init__ (self, interfaceGrafica, tamanhoBuffer):
         self.interfaceGrafica = interfaceGrafica
         self.porta = 0
         self.nomeArquivo = ""
         self.term = None
         self.arquivo = None
         self.buffer = ''
+        self.tamanhoBuffer = tamanhoBuffer
 
     def executa (self):
         # Inicializa atributos do cliente
         self.inicializa ()
 
         # Inicializa socket do servidor
-        soc = Socket_servidor ('127.0.0.1', '9999')
+        s = Socket_servidor ('127.0.0.1', self.porta, self.tamanhoBuffer)
+
+        # Inicializa o sevidor
+        s.inicializaServidor ()
 
         # Looping de recebimento de dados
         while 1:
-            self.buffer = soc.processaCliente ()
+            self.buffer = s.processaCliente ()
 
-            if (self.buffer == ''):
-                print 'Nada foi recebido de clientes, encerrando a aplicacao'
-                sys.exit ()
+            print 'Buffer: ' + self.buffer
 
             # Realiza gravacao em arquivo dos dados recebidos
             self.arquivo = Arquivo (self.nomeArquivo)
-            self.arquivo.abre ('w')
-            self.arquivo.escreve (self.buffer)
+            r = self.arquivo.abre ('a')
+            r = self.arquivo.escreve (self.buffer)
             self.arquivo.fecha ()
+
+        # Finaliza o servidor
+        s.fechaConexao ()
 
     def inicializa (self):
         if (self.interfaceGrafica == 'N'):
