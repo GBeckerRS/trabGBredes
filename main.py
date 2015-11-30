@@ -24,7 +24,7 @@ def main ():
         interface = "N"
     else :
         # Inicia a interface de texto...
-        print 'Inicia a interface de texto...'
+        print 'Iniciando a interface em modo texto...'
         interface = "N"
 
     #

@@ -35,6 +35,7 @@ class Socket_cliente (Socket):
                    str (msg [0]) + \
                  ' Mensagem ' + \
                    msg [1]
+            s.close ()
             sys.exit ()
 
         # fecha o socket
