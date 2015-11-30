@@ -10,4 +10,5 @@ Dependencias (modulos utilizados):
 
 - glade (para desenvolvimento do leiaute das telas)
 - Utilizado python 2.7
+- yEd () v3.14.3, para construção de diagramas
 
