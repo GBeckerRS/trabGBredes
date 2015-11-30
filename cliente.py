@@ -30,27 +30,33 @@ class Cliente:
 
         soc = Socket_cliente (self.ip, self.porta, self.tamanhoBuffer)
 
+        print 'Inciando a transmissao de dados...'
+
         tamanho = len (dados)
         tamanhoPacote = self.tamanhoBuffer
         if (tamanho < tamanhoPacote):
             tamanhoPacote = tamanho
         inicio = 0
         final = tamanhoPacote
-        counter = 0
+        contadorPacotes = 0
         while inicio < (tamanho -1):
+            print 'Enviando o pacote: ' + str (contadorPacotes)
             # Envia dados para o servidor
-            print 'Enviando dados (seq = ' + str (counter) + '): ' + dados [inicio:final]
             soc.enviaDados (dados [inicio:final])
             inicio = final
             final += tamanhoPacote
-            counter += 1
+            contadorPacotes += 1
+
+        print 'Encerrando a transmissao, foram enviados ' + \
+               str (contadorPacotes) + \
+             ' pacotes para o host...'
 
     def inicializa (self):
         if (self.interfaceGrafica == 'N'):
-            # Interface grafica desabilitada
+            # Inicializa a interface em modo texto
             self.term = Terminal ()
         else:
-            # Interface grafica habilitada (recurso indisponivel)
+            # Inicializa a interface grafica (nao implementada)
             self.term = Terminal ()
 
         # Requisita o ip do host
@@ -60,5 +66,5 @@ class Cliente:
         self.porta = self.term.lePorta ()
 
         # Requisita o caminho do arquivo
-        self.nomeArquivo = self.term.leCaminhoArquivo ()
+        self.nomeArquivo = self.term.leCaminhoArquivo ('Digite nome (caminho completo) do arquivo a enviar')
 

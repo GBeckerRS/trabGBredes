@@ -10,8 +10,8 @@ class Terminal:
     def lePorta (self):
         return self.leTeclado ('Digite o PORTA do host', True) 
 
-    def leCaminhoArquivo (self):
-        return self.leTeclado ('Digite o caminho do arquivo a enviar', False) 
+    def leCaminhoArquivo (self, msg):
+        return self.leTeclado (msg, False) 
 
     def leTeclado (self, mensagem, ehNumero):
         print mensagem

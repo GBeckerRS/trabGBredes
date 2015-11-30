@@ -29,13 +29,10 @@ class Servidor:
         # Looping de recebimento de dados
         while 1:
             self.buffer = s.processaCliente ()
-
-            print 'Buffer: ' + self.buffer
-
             # Realiza gravacao em arquivo dos dados recebidos
             self.arquivo = Arquivo (self.nomeArquivo)
-            r = self.arquivo.abre ('a')
-            r = self.arquivo.escreve (self.buffer)
+            self.arquivo.abre ('a')
+            self.arquivo.escreve (self.buffer)
             self.arquivo.fecha ()
 
         # Finaliza o servidor
@@ -43,15 +40,15 @@ class Servidor:
 
     def inicializa (self):
         if (self.interfaceGrafica == 'N'):
-            # Interface grafica desabilitada
+            # Inicializa a interface em modo texto
             self.term = Terminal ()
         else:
-            # Interface grafica habilitada (recurso indisponivel)
+            # Inicializa a interface grafica (nao implementada)
             self.term = Terminal ()
 
         # Requisita a porta do servidor
         self.porta = self.term.lePorta ()
 
         # Requisita o caminho do arquivo
-        self.nomeArquivo = self.term.leCaminhoArquivo ()
+        self.nomeArquivo = self.term.leCaminhoArquivo ('Digite o nome (caminho completo) do arquivo a escrever')
 
